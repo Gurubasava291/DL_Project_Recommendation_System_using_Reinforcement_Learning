@@ -1,4 +1,4 @@
-# Q-Learning based Music Recommendation System
+# Recommendation System using Reinforcement Learning
 
 ## Abstract
 
@@ -25,7 +25,7 @@ The project includes:
 
 Ensure you have Python 3.7+ installed. The project relies on standard data science libraries.
 
-You can install the required dependencies using `pip`:
+You can install the required dependencies using `pip` or requirements.txt: 
 
 ```bash
 pip install pandas numpy matplotlib tqdm
