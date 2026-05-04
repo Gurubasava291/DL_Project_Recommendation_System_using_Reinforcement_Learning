@@ -1,0 +1,11 @@
+artifact_location: file:///C:/GURU/RV Notes/MLOps Final Report Project/RS using RL
+  Project/mlruns/296392983538310571/models/m-74e7fb5456cb45ca84e8ad95daf6f077/artifacts
+creation_timestamp: 1777884766699
+experiment_id: '296392983538310571'
+last_updated_timestamp: 1777884786940
+model_id: m-74e7fb5456cb45ca84e8ad95daf6f077
+model_type: null
+name: dqn_model
+source_run_id: fd6d36ac52144b70902bf15e5e8ca07a
+status: 2
+status_message: null

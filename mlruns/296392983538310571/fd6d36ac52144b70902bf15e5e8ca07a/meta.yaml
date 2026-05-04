@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/GURU/RV Notes/MLOps Final Report Project/RS using RL Project/mlruns/296392983538310571/fd6d36ac52144b70902bf15e5e8ca07a/artifacts
+end_time: 1777884786969
+entry_point_name: ''
+experiment_id: '296392983538310571'
+lifecycle_stage: active
+run_id: fd6d36ac52144b70902bf15e5e8ca07a
+run_name: DQN_Run
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777884750733
+status: 3
+tags: []
+user_id: gurug

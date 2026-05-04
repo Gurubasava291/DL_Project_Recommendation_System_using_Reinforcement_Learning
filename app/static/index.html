@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommender</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            color: #bb86fc;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #333;
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #bb86fc;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #9b5de5;
+        }
+
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background: #2c2c2c;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎵 MLOps Music Recommender</h1>
+        <div class="form-group">
+            <label for="state">User Interaction State (comma-separated song IDs, e.g., 10,45,2)</label>
+            <input type="text" id="state" placeholder="e.g., 10,45,2">
+        </div>
+        <div class="form-group">
+            <label for="model">Select Model Tier</label>
+            <select id="model">
+                <option value="dqn">Deep Q-Network (PyTorch)</option>
+                <option value="qml">Quantum Variational Classifier (PennyLane)</option>
+                <option value="baseline">Popularity Baseline</option>
+            </select>
+        </div>
+        <button onclick="getRecommendations()">Get Recommendations</button>
+
+        <div class="results" id="results" style="display:none;">
+            <h3>Recommended Songs</h3>
+            <ul id="rec-list"></ul>
+            <p><small>Model used: <span id="model-used"></span></small></p>
+        </div>
+    </div>
+
+    <script>
+        async function getRecommendations() {
+            const stateStr = document.getElementById('state').value;
+            const model = document.getElementById('model').value;
+
+            let state;
+            try {
+                state = stateStr.split(',').map(s => parseInt(s.trim()));
+                if (state.length !== 3) throw "State must be 3 integers";
+            } catch (e) {
+                alert("Please enter exactly 3 comma-separated integers for the state.");
+                return;
+            }
+
+            const response = await fetch('/recommend', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ state: state, k: 5, model_type: model })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById('results').style.display = 'block';
+                const ul = document.getElementById('rec-list');
+                ul.innerHTML = '';
+                data.recommendations.forEach(song => {
+                    let li = document.createElement('li');
+                    li.textContent = `Song ID: ${song}`;
+                    ul.appendChild(li);
+                });
+                document.getElementById('model-used').textContent = data.model;
+            } else {
+                alert("Error fetching recommendations.");
+            }
+        }
+    </script>
+</body>
+
+</html>

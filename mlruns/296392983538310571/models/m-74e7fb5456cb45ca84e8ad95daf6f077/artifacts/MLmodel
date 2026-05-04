@@ -1,0 +1,23 @@
+artifact_path: file:///C:/GURU/RV Notes/MLOps Final Report Project/RS using RL Project/mlruns/296392983538310571/models/m-74e7fb5456cb45ca84e8ad95daf6f077/artifacts
+flavors:
+  python_function:
+    config:
+      device: null
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pytorch
+    pickle_module_name: mlflow.pytorch.pickle_module
+    python_version: 3.10.5
+  pytorch:
+    code: null
+    model_data: data
+    pytorch_version: 2.11.0+cpu
+mlflow_version: 3.10.1
+model_id: m-74e7fb5456cb45ca84e8ad95daf6f077
+model_size_bytes: 81247
+model_uuid: m-74e7fb5456cb45ca84e8ad95daf6f077
+prompts: null
+run_id: fd6d36ac52144b70902bf15e5e8ca07a
+utc_time_created: '2026-05-04 08:52:46.792748'
